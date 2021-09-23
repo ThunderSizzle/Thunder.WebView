@@ -1,17 +1,25 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Windows.Forms;
 
-namespace Thunder.WebView
+namespace Thunder.WebView.Windows
 {
     public partial class WebViewForm : Form
     {
+        private readonly WebViewOptions _options;
         private readonly Diga.WebView2.WinForms.WebView _webView1;
 
-        public WebViewForm()
+        public WebViewForm(IOptions<WebViewOptions> options)
         {
+            _options = options?.Value;
+            InitializeComponent();
+
             _webView1 = new Diga.WebView2.WinForms.WebView();
             SetupWebView();
+
+            _webView1.Url = _options?.StartingUrl;
             this.AddBrowserControl(_webView1);
+            toolStrip1.Visible = _options.ShowDevUi;
         }
 
         private void SetupWebView()

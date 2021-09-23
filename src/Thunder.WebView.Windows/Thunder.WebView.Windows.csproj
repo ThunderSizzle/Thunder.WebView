@@ -5,11 +5,17 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Diga.WebView2.WinForms" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.705.50" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Thunder.WebView\Thunder.WebView.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="WebViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

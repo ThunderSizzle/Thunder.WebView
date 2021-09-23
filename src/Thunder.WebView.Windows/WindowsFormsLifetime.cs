@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Extensions.Hosting.Internal;
 
-namespace Thunder.WebView
+namespace Thunder.WebView.Windows
 {
     public class WindowsFormsLifetime : IHostLifetime, IDisposable
     {

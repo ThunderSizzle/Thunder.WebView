@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Thunder.WebView
+namespace Thunder.WebView.Windows
 {
     public class WindowsFormsApplicationHostedService : IHostedService
     {

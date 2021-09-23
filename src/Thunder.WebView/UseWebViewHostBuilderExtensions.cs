@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Forms;
+using System;
 
 namespace Thunder.WebView
 {
     public static class UseWebViewHostBuilderExtensions
     {
-        public static IHostBuilder UseWebView<TStartup>(this IHostBuilder hostBuilder)
+        public static IHostBuilder UseWebView<TStartup>(this IHostBuilder hostBuilder, Action<IWebViewBuilder> buildWebViewAction)
             where TStartup : class
         {
             //todo replace this with dynamic port look up
@@ -25,14 +24,12 @@ namespace Thunder.WebView
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    // todo determine which url to prefer
-                    var primaryUrl = urls.Last();
-                    // todo plugin primary URL into WebView2
+                    var builder = new WebViewBuilder(services);
+                    buildWebViewAction(builder);
 
-                    services.AddSingleton<WebViewForm>();
-                    services.AddSingleton(c => new ApplicationContext(c.GetRequiredService<WebViewForm>()));
-                    services.AddSingleton<IHostLifetime, WindowsFormsLifetime>();
-                    services.AddHostedService<WindowsFormsApplicationHostedService>();
+                    var primaryUrl = builder.WebViewOptions.UseSSL ? urls.Last() : urls.First();
+                    builder.UseUrl(primaryUrl);
+                    services.AddSingleton(sp => builder.GetOptions());
                 });
         }
     }

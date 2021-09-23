@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Thunder.WebView
+namespace Thunder.WebView.Windows
 {
     partial class WebViewForm
     {

@@ -1,8 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,7 +14,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Thunder.WebView.Blazor\Thunder.WebView.Blazor.csproj" />
+    <ProjectReference Include="..\..\src\Thunder.WebView.Windows\Thunder.WebView.Windows.csproj" />
     <ProjectReference Include="..\..\src\Thunder.WebView\Thunder.WebView.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Motherfucking Website.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if not exist &quot;$(TargetDir)native&quot; mkdir &quot;$(TargetDir)native&quot;&#xD;&#xA;xcopy &quot;$(TargetDir)x64&quot; &quot;$(TargetDir)native\x64&quot; /s /i /Y&#xD;&#xA;xcopy &quot;$(TargetDir)x86&quot; &quot;$(TargetDir)native\x86&quot; /s /i /Y&#xD;&#xA;xcopy &quot;$(TargetDir)arm64&quot; &quot;$(TargetDir)native\arm64&quot; /s /i /Y" />
+  </Target>
 
 </Project>
