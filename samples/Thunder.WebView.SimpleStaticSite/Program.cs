@@ -1,22 +1,16 @@
 ﻿using Microsoft.Extensions.Hosting;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Thunder.WebView.Blazor;
 using Thunder.WebView.Windows;
 
 namespace Thunder.WebView.Tests
 {
-    public class UseWebViewHostBuilderExtensionsTests
+    public static class Program
     {
-        [Test]
-        public async Task UseWebView_Verify()
+        public static async Task Main(string[] args)
         {
             await Host.CreateDefaultBuilder()
-               .UseWebView<TestStartup>( builder => builder
+               .UseWebView<Startup>( builder => builder
                     .UseBlazor()
                     .UseSSL(true)
                     .UseWindowsForms())

@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.WebView.Windows", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4C8C4F30-2536-4952-872A-258515E7E0F2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{71FF8BAD-B104-4E8B-9EF1-6180F8D43F73}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{71FF8BAD-B104-4E8B-9EF1-6180F8D43F73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunder.WebView.Tests", "tests\Thunder.WebView.Tests\Thunder.WebView.Tests.csproj", "{ED231102-0618-47D7-B68F-E991386D33B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunder.WebView.SimpleStaticSite", "samples\Thunder.WebView.SimpleStaticSite\Thunder.WebView.SimpleStaticSite.csproj", "{ED231102-0618-47D7-B68F-E991386D33B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

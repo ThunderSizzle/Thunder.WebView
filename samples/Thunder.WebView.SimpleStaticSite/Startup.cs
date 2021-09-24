@@ -5,12 +5,12 @@ using System.IO;
 
 namespace Thunder.WebView.Tests
 {
-    public class TestStartup
+    public class Startup
     {
         public void Configure(IApplicationBuilder app)
         {
-            var html = File.ReadAllText("Motherfucking Website.html");
-            app.Run(context => context.Response.WriteAsync(html));
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
         public void ConfigureServices(IServiceCollection _)
         {
