@@ -13,7 +13,7 @@
     <ProjectReference Include="..\Thunder.WebView\Thunder.WebView.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="WebViewForm.cs">
+    <Compile Update="WebView\WebViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

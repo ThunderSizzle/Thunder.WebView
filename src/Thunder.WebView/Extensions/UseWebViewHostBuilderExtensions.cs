@@ -15,7 +15,7 @@ namespace Thunder.WebView
             var urls = new[] { "http://localhost:5000", "https://localhost:5001" };
 
             return hostBuilder
-                .ConfigureWebHost(webBuilder =>
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
                     .UseStartup<TStartup>()
