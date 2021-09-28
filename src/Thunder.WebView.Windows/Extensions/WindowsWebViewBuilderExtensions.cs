@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace Thunder.WebView.Windows
 {
-    public static class WindowsWebViewBuilderExtensions
+    internal static class WindowsWebViewBuilderExtensions
     {
-        public static IWebViewBuilder UseWindowsForms(this IWebViewBuilder builder)
+        internal static IWebViewBuilder UseWindowsForms(this IWebViewBuilder builder)
         {
             builder.Services.AddSingleton<WebViewForm>();
             builder.Services.AddSingleton(c => new ApplicationContext(c.GetRequiredService<WebViewForm>()));

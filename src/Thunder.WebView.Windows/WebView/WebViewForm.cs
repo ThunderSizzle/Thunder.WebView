@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Diga.WebView2.Wrapper.EventArguments;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace Thunder.WebView.Windows
@@ -8,8 +11,9 @@ namespace Thunder.WebView.Windows
     {
         private readonly WebViewOptions _options;
         private readonly Diga.WebView2.WinForms.WebView _webView1;
+        private readonly IServiceProvider _serviceProvider;
 
-        public WebViewForm(IOptions<WebViewOptions> options)
+        public WebViewForm(IOptions<WebViewOptions> options, IServiceProvider serviceProvider)
         {
             _options = options?.Value;
             InitializeComponent();
@@ -20,6 +24,7 @@ namespace Thunder.WebView.Windows
             _webView1.Url = _options?.StartingUrl;
             this.AddBrowserControl(_webView1);
             toolStrip1.Visible = _options.ShowDevUi;
+            _serviceProvider = serviceProvider;
         }
 
         private void SetupWebView()
@@ -48,6 +53,37 @@ namespace Thunder.WebView.Windows
             _webView1.Size = new System.Drawing.Size(941, 530);
             _webView1.TabIndex = 0;
             _webView1.Url = null;
+            _webView1.WebMessageReceived += this.webView1_WebMessageReceived;
+        }
+
+        private void webView1_WebMessageReceived(object sender, WebMessageReceivedEventArgs e)
+        {
+            var message = this.ReadMessage(e);
+            this.HandleMessage(message);
+        }
+
+        private void HandleMessage(Message message)
+        {
+            IMessageResult result;
+            var context = new MessageContext(this._webView1, message);
+            try
+            {
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var handler = scope.ServiceProvider.GetService<IMessageHandler>();
+                    result = handler.HandleMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = new ExceptionMessageResult(ex);
+            }
+            result.ExecuteResult(context);
+        }
+
+        private Message ReadMessage(WebMessageReceivedEventArgs e)
+        {
+            return JsonSerializer.Deserialize<Message>(e.WebMessageAsJson, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
         }
 
         private void AddBrowserControl<T>(T browser)
