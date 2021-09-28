@@ -1,4 +1,4 @@
-﻿namespace Thunder.WebView.Windows
+﻿namespace Thunder.WebView.Messaging
 {
     public interface IMessageController
     {

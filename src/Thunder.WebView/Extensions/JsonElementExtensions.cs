@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace Thunder.WebView.Windows
+namespace Thunder.WebView.Extensions
 {
     public static class JsonElementExtensions
     {

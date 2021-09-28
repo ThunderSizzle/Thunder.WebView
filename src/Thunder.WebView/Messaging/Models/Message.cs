@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.Json;
+using Thunder.WebView.Extensions;
 
-namespace Thunder.WebView.Windows
+namespace Thunder.WebView.Messaging
 {
     public class Message
     {

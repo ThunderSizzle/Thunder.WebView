@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Thunder.WebView.Windows
+namespace Thunder.WebView.Messaging
 {
     public class HandlerAttribute : Attribute
     {

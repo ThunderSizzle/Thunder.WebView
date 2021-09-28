@@ -4,10 +4,12 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Text.Json;
 using System.Windows.Forms;
+using Thunder.WebView.Messaging;
+using Message = Thunder.WebView.Messaging.Message;
 
 namespace Thunder.WebView.Windows
 {
-    public partial class WebViewForm : Form
+    public partial class WebViewForm : Form, IMessagingWebView
     {
         private readonly WebViewOptions _options;
         private readonly Diga.WebView2.WinForms.WebView _webView1;
@@ -65,7 +67,7 @@ namespace Thunder.WebView.Windows
         private void HandleMessage(Message message)
         {
             IMessageResult result;
-            var context = new MessageContext(this._webView1, message);
+            var context = new MessageContext(this, message);
             try
             {
                 using (var scope = _serviceProvider.CreateScope())
@@ -111,6 +113,11 @@ namespace Thunder.WebView.Windows
         private void ExitMenuItemClick(object sender, EventArgs e)
         {
             throw new NotSupportedException();
+        }
+
+        public void SendMessage(string json)
+        {
+            _webView1.SendMessage(json);
         }
     }
 }

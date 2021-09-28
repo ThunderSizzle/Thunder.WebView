@@ -3,8 +3,9 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using Thunder.WebView.Extensions;
 
-namespace Thunder.WebView.Windows
+namespace Thunder.WebView.Messaging
 {
     public class MessageHandler : IMessageHandler
     {

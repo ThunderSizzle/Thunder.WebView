@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Thunder.WebView.Windows
+namespace Thunder.WebView.Messaging
 {
     public class ResponseMessageResult : IMessageResult
     {

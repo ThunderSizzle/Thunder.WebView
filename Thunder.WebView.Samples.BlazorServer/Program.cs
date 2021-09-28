@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
-using Thunder.WebView.Blazor;
 using Thunder.WebView.Windows;
 
 namespace Thunder.WebView.Samples.BlazorServer
